@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<thlogic>
+  <attr sel="#th-navbar-brand" th:text="'User'" />
+  <attr sel="#th-navbar-button" th:text="'내 정보'" />
+  <attr sel="auth.name" th:text="${auth.name}" />
+  <attr sel="#th-table-body">
+    <attr sel="/tr[0]" th:each="user : ${users}">
+      <attr sel="th.number" th:text="${user.id}" />
+      <attr sel="td.name" th:text="${user.name}" />
+    </attr>
+  </attr>
+
+  <attr sel="#th-form-button" th:text="'등록'" />
+  <attr sel="#th-form-modal-label" th:text="'사용자 등록'" />
+  <attr sel="#th-form-modal-name" th:text="'이름'" />
+  <attr sel="#th-form-modal-password" th:text="'암호'" />
+  <attr sel="#th-form-modal-footer-close" th:text="'닫기'" />
+  <attr sel="#th-form-modal-footer-submit" th:text="'확인'" />
+
+  <attr sel="#th-modal-label" th:text="'내 정보'" />
+  <attr sel="#th-modal-table-body">
+    <attr sel="/tr//td.name" th:text="${myAccount.name}" />
+  </attr>
+  <attr sel="#th-modal-footer-button" th:text="'로그아웃'" />
+
+</thlogic>
