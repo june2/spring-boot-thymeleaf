@@ -61,7 +61,7 @@ class MainControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
                 .andExpect(model().attributeExists("users"))
-                .andExpect(model().attributeExists("myAccount"));
+                .andExpect(model().attributeExists("auth"));
         verify(userService).getList();
         verify(userService).getUser(any());
     }
@@ -99,7 +99,7 @@ class MainControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
                 .andExpect(model().attributeExists("users"))
-                .andExpect(model().attributeExists("myAccount"));
+                .andExpect(model().attributeExists("auth"));
         verify(userService).getList();
         verify(userService).getUser(any());
         verify(userService).addUser(any());

@@ -45,7 +45,11 @@ dependencies {
     implementation "com.querydsl:querydsl-core"
     implementation "com.querydsl:querydsl-collections"
     annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa" // querydsl JPAAnnotationProcessor 사용 지정
-    annotationProcessor "jakarta.annotation:jakarta.annotation-api" // java.lang.NoClassDefFoundError (javax.annotation.Generated) 발생 대응
+//    annotationProcessor "jakarta.annotation:jakarta.annotation-ap       i" // java.lang.NoClassDefFoundError (javax.annotation.Generated) 발생 대응
+
+    //swagger
+    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 }
 
 // querydsl 적용

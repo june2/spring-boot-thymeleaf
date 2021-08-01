@@ -8,13 +8,6 @@ import com.line.example.domain.User;
  */
 public class UserFixture {
 
-    /**
-     * Creates an instance from {@link User}.
-     *
-     * @param name User login ID
-     * @param password User password
-     * @return A new {@link User} object
-     */
     public static User constructTestUser(String name, String password) {
         return User.builder()
                 .name(name)

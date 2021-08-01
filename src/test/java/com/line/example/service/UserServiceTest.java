@@ -3,12 +3,10 @@ package com.line.example.service;
 import com.line.example.annotation.TransactionalBasicTestAnnotations;
 import com.line.example.domain.User;
 import com.line.example.repository.UserRepository;
-import org.hibernate.exception.ConstraintViolationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
@@ -39,6 +37,7 @@ class UserServiceTest {
         String name = "test";
         String password = "password";
         userRepository.save(constructTestUser(name, password));
+
 
         // When
         List<User> list = userService.getList();
@@ -112,8 +111,8 @@ class UserServiceTest {
 
         // Then
         assertThat(thrown)
-                .isInstanceOf(DataIntegrityViolationException.class)
-                .hasStackTraceContaining("name");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasStackTraceContaining("User input cannot be null");
     }
 
     @Test
@@ -144,8 +143,7 @@ class UserServiceTest {
 
         // Then
         assertThat(thrown)
-                .isInstanceOf(DataIntegrityViolationException.class)
-                .hasCauseExactlyInstanceOf(ConstraintViolationException.class)
-                .hasStackTraceContaining("Unique index or primary key violation");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasStackTraceContaining("Duplicated name");
     }
 }

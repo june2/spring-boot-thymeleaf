@@ -1,6 +1,7 @@
 package com.line.example.controller;
 
 import com.line.example.domain.User;
+import com.line.example.dto.UserDto;
 import com.line.example.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -40,5 +41,33 @@ public class MainController {
         model.addAttribute("auth", userService.getUser(authentication.getName()));
 
         return "index";
+    }
+
+    // Login form
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    // Login form with error
+    @GetMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
+        return "login";
+    }
+
+
+    // 회원가입 페이지
+    @GetMapping("/signup")
+    public String signup() {
+        return "/signup";
+    }
+
+    // 회원가입 처리
+    @PostMapping("/signup")
+    public String signup(UserDto userDto) {
+        System.out.println(userDto);
+        userService.addUser(User.builder().name(userDto.getName()).password(userDto.getPassword()).build());
+        return "redirect:/user/login";
     }
 }

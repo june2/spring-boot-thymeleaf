@@ -38,7 +38,7 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void addUser(User user) {
-        if (null == user.getName() || null == user.getPassword()) {
+        if (null == user || null == user.getName() || null == user.getPassword()) {
             throw new IllegalArgumentException("User input cannot be null.");
         }
         if(hasUser(user.getName())) {
